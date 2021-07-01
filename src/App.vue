@@ -12,6 +12,7 @@
 <script>
 import BulletScreenWindow from "./components/BulletScreenWindow.vue";
 import mqtt from "mqtt";
+import { MESSAGE_TYPE } from 'vue-baberrage'
 
 export default {
   name: "App",
@@ -20,6 +21,7 @@ export default {
   },
   data() {
     return {
+      bulletId: 0,
       client: null,
       config: {
         // host: "broker.emqx.io",
@@ -57,10 +59,18 @@ export default {
 
         this.client.on("message", (topic, message) => {
           // console.log(topic, message);
-          this.messages[topic].unshift(new TextDecoder().decode(message));
-          if (this.messages[topic].length > 10) {
-            this.messages[topic].pop();
-          }
+          // this.messages[topic].unshift(new TextDecoder().decode(message));
+          // if (this.messages[topic].length > 10) {
+          //   this.messages[topic].pop();
+          // }
+
+          this.messages[topic].push({
+            id: ++this.bulletId,
+            avatar: require("./assets/logo.png"),
+            msg: new TextDecoder().decode(message),
+            time: 5,
+            type: MESSAGE_TYPE.NORMAL,
+          });
         });
       } catch (error) {
         console.log("mqtt.connect error", error);

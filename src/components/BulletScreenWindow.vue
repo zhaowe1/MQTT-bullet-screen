@@ -1,9 +1,15 @@
 <template>
   <div class="bullet-screen-window">
     <div class="topic">Topic: {{ topic }}</div>
-    <div class="message">
+    <!-- <div class="message">
       <p v-for="(msg, index) in childMessages" :key="index">{{ msg }}</p>
-    </div>
+    </div> -->
+    <vue-baberrage
+      :barrageList="childMessages"
+      :isShow="barrageIsShow"
+      :loop="barrageLoop"
+    >
+    </vue-baberrage>
   </div>
 </template>
 
@@ -17,6 +23,8 @@ export default {
   data() {
     return {
       childMessages: this.messages,
+      barrageIsShow: true,
+      barrageLoop: false,
     };
   },
   watch: {
@@ -29,10 +37,8 @@ export default {
 
 <style scoped>
 .bullet-screen-window {
-  float: left;
-  width: 300px;
-  padding: 15px;
-  margin: 10px;
+  height: 300px;
+  margin: 0 0 10px 0;
   border: 1px solid #ccc;
 }
 </style>

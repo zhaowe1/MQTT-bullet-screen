@@ -18,7 +18,7 @@ if ($mqtt->connect(true, NULL, $username, $password)) {
 	while (true) {
 		$channel = mt_rand(1, 5);
 		$mqtt->publish('vue/mqtt/test/' . $channel, date('[Y-m-d H:i:s]') . ' msg: ' . mt_rand(10000, 99999) , 0, false);
-		usleep(300 * 1000);
+		usleep(mt_rand(100, 500) * 1000);
 	}
 	$mqtt->close();
 } else {

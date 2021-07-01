@@ -10,7 +10,8 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "mqtt": "^4.2.8",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-baberrage": "^3.2.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
